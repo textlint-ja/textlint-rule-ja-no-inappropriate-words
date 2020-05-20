@@ -1,0 +1,40 @@
+{
+  "version": "1.0.0",
+  "keywords": [
+    "textlintrule"
+  ],
+  "main": "lib/index.js",
+  "files": [
+    "lib/",
+    "src/"
+  ],
+  "scripts": {
+    "test": "textlint-scripts test",
+    "build": "textlint-scripts build",
+    "prepublish": "npm run --if-present build",
+    "watch": "textlint-scripts build --watch"
+  },
+  "devDependencies": {
+    "@textlint/types": "^1.3.1",
+    "@types/node": "^12.12.39",
+    "textlint-scripts": "^3.0.0",
+    "textlint-tester": "^5.1.15",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.6.4"
+  },
+  "name": "textlint-rule-no-hoso-kinshi-yogo",
+  "description": "放送禁止用語をチェックするtextlintルール",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo.git"
+  },
+  "author": "Hood <hato6502@gmail.com> (https://github.com/blue-hood)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo/issues"
+  },
+  "homepage": "https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo#readme"
+}
