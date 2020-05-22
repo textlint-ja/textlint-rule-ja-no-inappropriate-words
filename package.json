@@ -38,8 +38,7 @@
   },
   "homepage": "https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo#readme",
   "dependencies": {
-    "@types/xml2js": "^0.4.5",
-    "isomorphic-fetch": "^2.2.1",
-    "xml2js": "^0.4.23"
+    "fast-xml-parser": "github:Delagen/fast-xml-parser",
+    "isomorphic-fetch": "^2.2.1"
   }
 }

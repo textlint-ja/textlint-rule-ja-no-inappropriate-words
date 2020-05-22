@@ -1,7 +1,7 @@
 import 'isomorphic-fetch';
 
 import { TextlintRuleModule } from '@textlint/types';
-import xml2js from 'xml2js';
+import fastXmlParser from 'fast-xml-parser';
 
 const dictionaryUrl = 'http://monoroch.net/kinshi/housouKinshiYougo.xml';
 const referenceUrl = 'http://monoroch.net/kinshi/';
@@ -9,15 +9,11 @@ const referenceUrl = 'http://monoroch.net/kinshi/';
 interface Dictionary {
   housouKinshiYougoList?: {
     dirtyWord?: {
-      notes?: string[];
+      notes?: string;
       replaceWordList?: {
-        word?: {
-          _?: string;
-        }[];
-      }[];
-      word?: {
-        _?: string;
-      }[];
+        word?: string | string[];
+      };
+      word?: string;
     }[];
   };
 }
@@ -36,7 +32,7 @@ const fetchDictionary = async () => {
   }
 
   const text = await response.text();
-  const dictionary: Dictionary = await xml2js.parseStringPromise(text);
+  const dictionary: Dictionary = fastXmlParser.parse(text);
 
   cachedDictionary = dictionary
 
@@ -52,17 +48,17 @@ const report: TextlintRuleModule = (context) => {
 
       const { housouKinshiYougoList } = await fetchDictionary();
 
-      housouKinshiYougoList?.dirtyWord?.forEach((dirtyWord) => {
-        const notes = dirtyWord.notes?.[0];
-        const replaceWordList = dirtyWord.replaceWordList || [];
-        const word = dirtyWord.word?.[0]._ || '';
+      housouKinshiYougoList?.dirtyWord?.forEach(({ notes, replaceWordList, word = '' }) => {
         const index = text.indexOf(word);
 
         if (index === -1) {
           return;
         }
 
-        const replaceWords = replaceWordList.map(({ word }) => word?.[0]._).join(', ') || '(なし)';
+        const replaceWords = typeof replaceWordList?.word === 'string'
+          ? replaceWordList.word
+          : replaceWordList?.word?.join(', ')
+          || '(なし)';
 
         const ruleError = new RuleError(
           `放送禁止用語「${word}」が含まれています。　言い換え語: ${replaceWords}　備考: ${notes}　参照: ${referenceUrl}`,
