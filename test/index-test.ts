@@ -1,48 +1,37 @@
-import TextLintTester from "textlint-tester";
-import rule from "../src/index";
+import TextLintTester from 'textlint-tester';
+import rule from '../src/index';
+
 const tester = new TextLintTester();
-// ruleName, rule, { valid, invalid }
-tester.run("rule", rule, {
-    valid: [
-        // no problem
-        "text",
+
+tester.run('no-hoso-kinshi-yogo', rule, {
+  valid: ['問題のない文章です。'],
+  invalid: [
+    {
+      text: '放送禁止用語「魚屋」が含まれた文章です。',
+      errors: [
         {
-            text: "It is bugs, but it should be ignored",
-            options: {
-                allows: ["it should be ignored"]
-            }
+          message: '放送禁止用語「魚屋」が含まれています。　言い換え語: 鮮魚商　備考: 職業名　参照: http://monoroch.net/kinshi/',
+          line: 1,
+          column: 8
         }
-    ],
-    invalid: [
-        // single match
-        {
-            text: "It is bugs.",
-            errors: [
-                {
-                    message: "Found bugs.",
-                    line: 1,
-                    column: 7
-                }
-            ]
-        },
-        // multiple match
-        {
-            text: `It has many bugs.
+      ]
+    },
+    {
+      text: `放送禁止用語「魚屋」が含まれた文章です。
 
-One more bugs`,
-            errors: [
-                {
-                    message: "Found bugs.",
-                    line: 1,
-                    column: 13
-                },
-                {
-                    message: "Found bugs.",
-                    line: 3,
-                    column: 10
-                }
-            ]
+放送禁止用語「サラブレッド」が含まれた文章です。`,
+      errors: [
+        {
+          message: '放送禁止用語「魚屋」が含まれています。　言い換え語: 鮮魚商　備考: 職業名　参照: http://monoroch.net/kinshi/',
+          line: 1,
+          column: 8
         },
-
-    ]
+        {
+          message: '放送禁止用語「サラブレッド」が含まれています。　言い換え語: (なし)　備考: 比喩表現に注意。サラブレッドには厳格な血統登録が行われ、1頭1頭に全て血統書が存在する　参照: http://monoroch.net/kinshi/',
+          line: 3,
+          column: 8
+        }
+      ]
+    },
+  ]
 });
