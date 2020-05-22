@@ -1,5 +1,3 @@
-import { polyfill } from 'es6-promise';
-polyfill();
 import 'isomorphic-fetch';
 
 import { TextlintRuleModule } from '@textlint/types';
