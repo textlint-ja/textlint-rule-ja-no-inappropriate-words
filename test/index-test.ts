@@ -27,7 +27,7 @@ tester.run('no-hoso-kinshi-yogo', rule, {
           column: 8
         },
         {
-          message: '放送禁止用語「サラブレッド」が含まれています。　言い換え語: (なし)　備考: 比喩表現に注意。サラブレッドには厳格な血統登録が行われ、1頭1頭に全て血統書が存在する　参照: http://monoroch.net/kinshi/',
+          message: '放送禁止用語「サラブレッド」が含まれています。　備考: 比喩表現に注意。サラブレッドには厳格な血統登録が行われ、1頭1頭に全て血統書が存在する　参照: http://monoroch.net/kinshi/',
           line: 3,
           column: 8
         }

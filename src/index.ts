@@ -56,12 +56,15 @@ const report: TextlintRuleModule = (context) => {
         }
 
         const replaceWords = typeof replaceWordList?.word === 'string'
-          ? replaceWordList.word
-          : replaceWordList?.word?.join(', ')
-          || '(なし)';
+          ? replaceWordList.word : replaceWordList?.word?.join(', ');
 
         const ruleError = new RuleError(
-          `放送禁止用語「${word}」が含まれています。　言い換え語: ${replaceWords}　備考: ${notes}　参照: ${referenceUrl}`,
+          [
+            `放送禁止用語「${word}」が含まれています。`,
+            ...replaceWords && [`言い換え語: ${replaceWords}`] || [],
+            ...notes && [`備考: ${notes}`] || [],
+            `参照: ${referenceUrl}`
+          ].join('　'),
           { index }
         );
 
