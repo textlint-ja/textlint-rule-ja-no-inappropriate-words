@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
 
-import { TextlintRuleModule } from '@textlint/types';
+import { TextlintRuleModule, TextlintRuleReporter } from '@textlint/types';
 import fastXmlParser from 'fast-xml-parser';
 const fs = require('fs');
 import os from 'os';
@@ -52,8 +52,8 @@ const getDictionary = async () => {
   return dictionary;
 }
 
-const report: TextlintRuleModule = (context) => {
-  const { Syntax, RuleError, report, getSource } = context;
+const reporter: TextlintRuleReporter = (context) => {
+  const { fixer, getSource, report, RuleError, Syntax } = context;
 
   return {
     async [Syntax.Str](node) {
@@ -68,17 +68,20 @@ const report: TextlintRuleModule = (context) => {
           return;
         }
 
-        const replaceWords = typeof replaceWordList?.word === 'string'
-          ? replaceWordList.word : replaceWordList?.word?.join(', ');
+        const replaceWordArray = typeof replaceWordList?.word === 'string'
+          ? [replaceWordList.word] : replaceWordList?.word;
 
         const ruleError = new RuleError(
           [
             `放送禁止用語「${word}」が含まれています。`,
-            ...replaceWords && [`言い換え語: ${replaceWords}`] || [],
+            ...replaceWordArray && [`言い換え語: ${replaceWordArray.join(', ')}`] || [],
             ...notes && [`備考: ${notes}`] || [],
             `参照: ${referenceUrl}`
           ].join('　'),
-          { index }
+          {
+            index,
+            fix: replaceWordArray && fixer.replaceTextRange([index, index + word.length], replaceWordArray[0])
+          }
         );
 
         report(node, ruleError);
@@ -87,4 +90,9 @@ const report: TextlintRuleModule = (context) => {
   }
 };
 
-export default report;
+const module: TextlintRuleModule = {
+  fixer: reporter,
+  linter: reporter
+};
+
+export default module;

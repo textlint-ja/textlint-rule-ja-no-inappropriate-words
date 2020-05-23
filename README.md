@@ -1,5 +1,7 @@
 # textlint-rule-no-hoso-kinshi-yogo
 
+[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/)
+
 放送禁止用語をチェックするtextlintルール
 
 ## Install
