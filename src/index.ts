@@ -23,31 +23,43 @@ interface Dictionary {
 }
 
 const fetchAndCacheDictionary = async () => {
-  const response = await fetch(dictionaryUrl);
+  try {
+    const response = await fetch(dictionaryUrl);
 
-  if (response.status >= 400) {
-    throw new Error(`${response.status}: ${response.statusText}`);
+    if (response.status >= 400) {
+      throw new Error(`${response.status}: ${response.statusText}`);
+    }
+
+    const text = await response.text();
+
+    fs.writeFileSync(dictionaryPath, text);
+
+    return text;
+  } catch (e) {
+    console.error(e);
+
+    return;
   }
-
-  const text = await response.text();
-
-  fs.writeFileSync(dictionaryPath, text);
-
-  return text;
 }
 
-const readDictionaryFromCache = () => {
+const readDictionaryFromCache = ({ ignoreMaxAge = false }: { ignoreMaxAge?: boolean }) => {
   try {
     const stats = fs.statSync(dictionaryPath);
 
-    if (new Date().getTime() - stats.mtime.getTime() < maxAge * 1000) {
+    if (ignoreMaxAge || new Date().getTime() - stats.mtime.getTime() < maxAge * 1000) {
       return fs.readFileSync(dictionaryPath).toString();
     }
   } catch { }
 }
 
 const getDictionary = async () => {
-  const text = readDictionaryFromCache() || await fetchAndCacheDictionary();
+  const text = readDictionaryFromCache({})
+    || await fetchAndCacheDictionary()
+    || readDictionaryFromCache({ ignoreMaxAge: true });
+
+  if (!text) {
+    throw new Error('辞書データを取得できませんでした。');
+  }
 
   const dictionary: Dictionary = fastXmlParser.parse(text);
 
