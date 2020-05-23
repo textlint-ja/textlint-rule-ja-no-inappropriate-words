@@ -22,17 +22,21 @@ interface Dictionary {
   };
 }
 
-const fetchDictionary = async () => {
+const fetchAndCacheDictionary = async () => {
   const response = await fetch(dictionaryUrl);
 
   if (response.status >= 400) {
     throw new Error(`${response.status}: ${response.statusText}`);
   }
 
-  return response.text();
+  const text = await response.text();
+
+  fs.writeFileSync(dictionaryPath, text);
+
+  return text;
 }
 
-const readDictionaryFromFs = () => {
+const readDictionaryFromCache = () => {
   try {
     const stats = fs.statSync(dictionaryPath);
 
@@ -43,9 +47,7 @@ const readDictionaryFromFs = () => {
 }
 
 const getDictionary = async () => {
-  const text = readDictionaryFromFs() || await fetchDictionary();
-
-  fs.writeFileSync(dictionaryPath, text);
+  const text = readDictionaryFromCache() || await fetchAndCacheDictionary();
 
   const dictionary: Dictionary = fastXmlParser.parse(text);
 
