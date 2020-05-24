@@ -4,6 +4,12 @@
 
 放送禁止用語をチェックするtextlintルール
 
+参照: [放送禁止用語一覧](http://monoroch.net/kinshi/)
+
+```
+1:1  ✓ error  放送禁止用語「魚屋」が含まれています。　言い換え語: 鮮魚商　備考: 職業名　参照: http://monoroch.net/kinshi/  no-hoso-kinshi-yogo
+```
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
