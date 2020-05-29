@@ -1,6 +1,6 @@
 {
   "name": "textlint-rule-no-hoso-kinshi-yogo",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "放送禁止用語をチェックするtextlintルール",
   "keywords": [
     "textlintrule"
