@@ -48,6 +48,10 @@ Test textlint rule by [textlint-tester](https://github.com/textlint/textlint-tes
 
     npm test
 
+## Disclaimer
+
+Please see [DISCLAIMER.md](https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo/blob/master/DISCLAIMER.md).
+
 ## License
 
 MIT © Hood

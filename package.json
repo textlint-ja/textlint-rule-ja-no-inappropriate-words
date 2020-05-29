@@ -1,18 +1,38 @@
 {
+  "name": "textlint-rule-no-hoso-kinshi-yogo",
   "version": "1.2.0",
+  "description": "放送禁止用語をチェックするtextlintルール",
   "keywords": [
     "textlintrule"
   ],
+  "homepage": "https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo#readme",
+  "bugs": {
+    "url": "https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo.git"
+  },
+  "license": "MIT",
+  "author": "Hood <hato6502@gmail.com> (https://github.com/blue-hood)",
   "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
   "files": [
     "lib/",
     "src/"
   ],
   "scripts": {
-    "test": "textlint-scripts test",
     "build": "textlint-scripts build",
-    "prepublish": "npm run --if-present build",
+    "generate-disclaimer": "yarn licenses generate-disclaimer --ignore-platform > DISCLAIMER.md",
+    "prepublish": "yarn run --if-present build",
+    "test": "textlint-scripts test",
     "watch": "textlint-scripts build --watch"
+  },
+  "dependencies": {
+    "fast-xml-parser": "github:Delagen/fast-xml-parser",
+    "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
     "@textlint/types": "^1.3.1",
@@ -21,24 +41,5 @@
     "textlint-tester": "^5.1.15",
     "ts-node": "^8.10.1",
     "typescript": "^3.6.4"
-  },
-  "name": "textlint-rule-no-hoso-kinshi-yogo",
-  "description": "放送禁止用語をチェックするtextlintルール",
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo.git"
-  },
-  "author": "Hood <hato6502@gmail.com> (https://github.com/blue-hood)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo/issues"
-  },
-  "homepage": "https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo#readme",
-  "dependencies": {
-    "fast-xml-parser": "github:Delagen/fast-xml-parser",
-    "isomorphic-fetch": "^2.2.1"
   }
 }
