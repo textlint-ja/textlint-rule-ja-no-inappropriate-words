@@ -108,7 +108,7 @@ const reporter: TextlintRuleReporter = (context) => {
             ].join('　'),
             {
               index,
-              fix: replaceWordArray?.[0]["#text"] && fixer.replaceTextRange(
+              fix: replaceWordArray?.length === 1 && replaceWordArray[0]["#text"] && fixer.replaceTextRange(
                 [index, index + dirtyWord.length],
                 replaceWordArray[0]["#text"]
               ) || undefined
