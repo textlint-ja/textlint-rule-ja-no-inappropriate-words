@@ -7,8 +7,7 @@
 参照: [MosasoM/inappropriate-words-ja](https://github.com/MosasoM/inappropriate-words-ja)
 
 ```
-1:1  error    放送禁止用語「サラブレッド」が含まれています。　備考: 比喩表現に注意。サラブレッドには厳格な血統登録が行われ、1頭1頭に全て血統書が存在する　参照: http://monoroch.net/kinshi/  no-hoso-kinshi-yogo
-1:8  ✓ error  放送禁止用語「魚屋」が含まれています。　言い換え語: 鮮魚商　備考: 職業名　参照: http://monoroch.net/kinshi/                                                                    no-hoso-kinshi-yogo
+1:1  error    不適切表現「いざり」が含まれています。  ja-no-inappropriate-words
 ```
 
 ## Install
