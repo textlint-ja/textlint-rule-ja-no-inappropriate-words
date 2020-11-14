@@ -1,7 +1,5 @@
 # textlint-rule-ja-no-inappropriate-words
 
-[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/)
-
 不適切表現をチェックするtextlintルール
 
 参照: [MosasoM/inappropriate-words-ja](https://github.com/MosasoM/inappropriate-words-ja)
