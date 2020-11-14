@@ -3,6 +3,7 @@ import 'isomorphic-fetch';
 import { TextlintRuleModule, TextlintRuleReporter } from '@textlint/types';
 import fastXmlParser from 'fast-xml-parser';
 const fs = require('fs');
+import { tokenize } from "kuromojin";
 import os from 'os';
 
 const dictionaryUrl = 'http://monoroch.net/kinshi/housouKinshiYougo.xml';
@@ -12,7 +13,6 @@ const maxAge = 604800;
 
 interface Word {
   ['#text']?: string;
-  ['@_reading']?: string;
 }
 
 interface Dictionary {
@@ -55,6 +55,8 @@ const readDictionaryFromCache = ({ ignoreMaxAge = false }: { ignoreMaxAge?: bool
       return fs.readFileSync(dictionaryPath).toString();
     }
   } catch { }
+
+  return;
 }
 
 const getDictionary = async () => {
@@ -77,31 +79,23 @@ const reporter: TextlintRuleReporter = (context) => {
   return {
     async [Syntax.Str](node) {
       const text = getSource(node);
-
+      const tokens = await tokenize(text);
       const { housouKinshiYougoList } = await getDictionary();
 
-      housouKinshiYougoList?.dirtyWord?.forEach(({ notes, replaceWordList, word }) => {
-        if (!word) {
-          return;
-        }
-
-        const replaceWordArray = replaceWordList?.word instanceof Array
-          ? replaceWordList.word : replaceWordList?.word && [replaceWordList.word];
-
-        [word["#text"], word["@_reading"]].forEach((dirtyWord) => {
-          if (!dirtyWord) {
+      tokens.forEach(({ surface_form, word_position }) => {
+        housouKinshiYougoList?.dirtyWord?.forEach(({ notes, replaceWordList, word }) => {
+          if (surface_form !== word?.["#text"]) {
             return;
           }
 
-          const index = text.indexOf(dirtyWord);
+          const index = word_position - 1;
 
-          if (index === -1) {
-            return;
-          }
+          const replaceWordArray = replaceWordList?.word instanceof Array
+            ? replaceWordList.word : replaceWordList?.word && [replaceWordList.word];
 
           const ruleError = new RuleError(
             [
-              `放送禁止用語「${dirtyWord}」が含まれています。`,
+              `放送禁止用語「${word["#text"]}」が含まれています。`,
               ...replaceWordArray && [`言い換え語: ${replaceWordArray.map((word) => word["#text"]).join(', ')}`] || [],
               ...notes && [`備考: ${notes}`] || [],
               `参照: ${referenceUrl}`
@@ -109,7 +103,7 @@ const reporter: TextlintRuleReporter = (context) => {
             {
               index,
               fix: replaceWordArray?.length === 1 && replaceWordArray[0]["#text"] && fixer.replaceTextRange(
-                [index, index + dirtyWord.length],
+                [index, index + word["#text"].length],
                 replaceWordArray[0]["#text"]
               ) || undefined
             }

@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "fast-xml-parser": "github:Delagen/fast-xml-parser",
-    "isomorphic-fetch": "^2.2.1"
+    "isomorphic-fetch": "^2.2.1",
+    "kuromojin": "^2.0.0"
   },
   "devDependencies": {
     "@textlint/types": "^1.3.1",
