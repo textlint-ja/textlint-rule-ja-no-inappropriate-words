@@ -4,16 +4,15 @@ import rule from '../src/index';
 const tester = new TextLintTester();
 
 tester.run('no-hoso-kinshi-yogo', rule, {
-  valid: ['問題のない文章です。'],
+  valid: ['勉強のかたわら掃除をしました。'],
   invalid: [
     {
-      text: '放送禁止用語「魚屋」が含まれた文章です。',
-      output: '放送禁止用語「鮮魚商」が含まれた文章です。',
+      text: '不適切表現「いざり」が含まれた文章です。',
       errors: [
         {
-          message: '放送禁止用語「魚屋」が含まれています。　言い換え語: 鮮魚商　備考: 職業名　参照: http://monoroch.net/kinshi/',
+          message: '不適切表現「いざり」が含まれています。',
           line: 1,
-          column: 8
+          column: 7
         }
       ]
     }

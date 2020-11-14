@@ -31,8 +31,6 @@
     "watch": "textlint-scripts build --watch"
   },
   "dependencies": {
-    "fast-xml-parser": "github:Delagen/fast-xml-parser",
-    "isomorphic-fetch": "^3.0.0",
     "kuromojin": "^2.0.0"
   },
   "devDependencies": {
