@@ -1,10 +1,10 @@
-# textlint-rule-no-hoso-kinshi-yogo
+# textlint-rule-ja-no-inappropriate-words
 
 [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/)
 
-放送禁止用語をチェックするtextlintルール
+不適切表現をチェックするtextlintルール
 
-参照: [放送禁止用語一覧](http://monoroch.net/kinshi/)
+参照: [MosasoM/inappropriate-words-ja](https://github.com/MosasoM/inappropriate-words-ja)
 
 ```
 1:1  error    放送禁止用語「サラブレッド」が含まれています。　備考: 比喩表現に注意。サラブレッドには厳格な血統登録が行われ、1頭1頭に全て血統書が存在する　参照: http://monoroch.net/kinshi/  no-hoso-kinshi-yogo
@@ -15,7 +15,7 @@
 
 Install with [npm](https://www.npmjs.com/):
 
-    npm install textlint-rule-no-hoso-kinshi-yogo
+    npm install textlint-rule-ja-no-inappropriate-words
 
 ## Usage
 
@@ -24,7 +24,7 @@ Via `.textlintrc`(Recommended)
 ```json
 {
     "rules": {
-        "no-hoso-kinshi-yogo": true
+        "ja-no-inappropriate-words": true
     }
 }
 ```
@@ -32,7 +32,7 @@ Via `.textlintrc`(Recommended)
 Via CLI
 
 ```
-textlint --rule no-hoso-kinshi-yogo README.md
+textlint --rule ja-no-inappropriate-words README.md
 ```
 
 ### Build
@@ -51,8 +51,8 @@ Test textlint rule by [textlint-tester](https://github.com/textlint/textlint-tes
 
 ## Disclaimer
 
-Please see [DISCLAIMER.md](https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo/blob/master/DISCLAIMER.md).
+Please see [DISCLAIMER.md](https://github.com/hata6502/textlint-rule-ja-no-inappropriate-words/blob/master/DISCLAIMER.md).
 
 ## License
 
-MIT © Hood
+MIT © Tomoyuki Hata

@@ -1,20 +1,20 @@
 {
-  "name": "textlint-rule-no-hoso-kinshi-yogo",
-  "version": "1.3.0",
-  "description": "放送禁止用語をチェックするtextlintルール",
+  "name": "textlint-rule-ja-no-inappropriate-words",
+  "version": "1.0.0",
+  "description": "不適切表現をチェックするtextlintルール",
   "keywords": [
     "textlintrule"
   ],
-  "homepage": "https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo#readme",
+  "homepage": "https://github.com/hata6502/textlint-rule-ja-no-inappropriate-words#readme",
   "bugs": {
-    "url": "https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo/issues"
+    "url": "https://github.com/hata6502/textlint-rule-ja-no-inappropriate-words/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blue-hood/textlint-rule-no-hoso-kinshi-yogo.git"
+    "url": "git+https://github.com/hata6502/textlint-rule-ja-no-inappropriate-words.git"
   },
   "license": "MIT",
-  "author": "Hood <hato6502@gmail.com> (https://github.com/blue-hood)",
+  "author": "Tomoyuki Hata <hato6502@gmail.com> (https://github.com/hata6502)",
   "main": "lib/index.js",
   "directories": {
     "test": "test"
