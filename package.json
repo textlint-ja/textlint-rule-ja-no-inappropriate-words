@@ -1,6 +1,6 @@
 {
   "name": "textlint-rule-no-hoso-kinshi-yogo",
-  "version": "1.2.3",
+  "version": "1.3.0",
   "description": "放送禁止用語をチェックするtextlintルール",
   "keywords": [
     "textlintrule"
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "fast-xml-parser": "github:Delagen/fast-xml-parser",
-    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-fetch": "^3.0.0",
     "kuromojin": "^2.0.0"
   },
   "devDependencies": {
