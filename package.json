@@ -1,6 +1,6 @@
 {
   "name": "textlint-rule-ja-no-inappropriate-words",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "不適切表現をチェックするtextlintルール",
   "keywords": [
     "textlintrule"
