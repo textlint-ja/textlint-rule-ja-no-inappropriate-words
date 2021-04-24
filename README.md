@@ -52,8 +52,6 @@ The following creations are included in this product:
 
 - [MosasoM/inappropriate-words-ja](https://github.com/MosasoM/inappropriate-words-ja)
 
-Please see [DISCLAIMER.md](https://github.com/hata6502/textlint-rule-ja-no-inappropriate-words/blob/master/DISCLAIMER.md).
-
 ## License
 
 MIT © Tomoyuki Hata
