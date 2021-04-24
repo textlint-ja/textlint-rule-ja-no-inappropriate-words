@@ -1,6 +1,6 @@
 {
   "name": "textlint-rule-ja-no-inappropriate-words",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "不適切表現をチェックするtextlintルール",
   "keywords": [
     "textlintrule"
@@ -29,13 +29,12 @@
   ],
   "scripts": {
     "build": "textlint-scripts build",
-    "generate-disclaimer": "yarn licenses generate-disclaimer --ignore-platform > DISCLAIMER.md",
     "prepublish": "yarn run --if-present build",
     "test": "textlint-scripts test",
     "watch": "textlint-scripts build --watch"
   },
   "dependencies": {
-    "kuromojin": "^2.0.0"
+    "kuromojin": "^3.0.0"
   },
   "devDependencies": {
     "@textlint/types": "^1.3.1",
